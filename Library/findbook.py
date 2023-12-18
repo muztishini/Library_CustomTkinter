@@ -5,55 +5,59 @@ con = sqlite3.connect("libdb.db")
 cursor = con.cursor()
 
 
-class FindBook(CTk):
+class FindBook:
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        self.geometry("600x350")
-        self.title("Найти книгу")
+        self.new_window1 = CTk()
+        self.new_window1.geometry("600x350")
+        self.new_window1.title("Найти книгу")
 
-        self.label1 = CTkLabel(self, text="Поиск книги по кретериям:")
+        self.label1 = CTkLabel(self.new_window1, text="Поиск книги по кретериям:")
         self.label1.place(x=10, y=10)
 
         self.radio_var = IntVar()
-        self.radio1 = CTkRadioButton(self, text="Название", variable=self.radio_var, value=1)
+        self.radio1 = CTkRadioButton(self.new_window1, text="Название", variable=self.radio_var, value=1)
         self.radio1.place(x=10, y=40)
-        self.entry1 = CTkEntry(self, placeholder_text="Название")
+        self.entry1 = CTkEntry(self.new_window1, placeholder_text="Название")
         self.entry1.place(x=200, y=40)
-        self.radio2 = CTkRadioButton(self, text="Автор", variable=self.radio_var, value=2)
+        self.radio2 = CTkRadioButton(self.new_window1, text="Автор", variable=self.radio_var, value=2)
         self.radio2.place(x=10, y=70)
-        self.entry2 = CTkEntry(self, placeholder_text="Автор")
+        self.entry2 = CTkEntry(self.new_window1, placeholder_text="Автор")
         self.entry2.place(x=200, y=70)
-        self.radio3 = CTkRadioButton(self, text="Жанр", variable=self.radio_var, value=3)
+        self.radio3 = CTkRadioButton(self.new_window1, text="Жанр", variable=self.radio_var, value=3)
         self.radio3.place(x=10, y=100)
-        self.entry3 = CTkEntry(self, placeholder_text="Жанр")
+        self.entry3 = CTkEntry(self.new_window1, placeholder_text="Жанр")
         self.entry3.place(x=200, y=100)
-        self.radio4 = CTkRadioButton(self, text="Количество страниц", variable=self.radio_var, value=4)
+        self.radio4 = CTkRadioButton(self.new_window1, text="Количество страниц", variable=self.radio_var, value=4)
         self.radio4.place(x=10, y=130)
-        self.entry4 = CTkEntry(self, placeholder_text="Количество страниц")
+        self.entry4 = CTkEntry(self.new_window1, placeholder_text="Количество страниц")
         self.entry4.place(x=200, y=130)
-        self.radio5 = CTkRadioButton(self, text="Год издания", variable=self.radio_var, value=5)
+        self.radio5 = CTkRadioButton(self.new_window1, text="Год издания", variable=self.radio_var, value=5)
         self.radio5.place(x=10, y=160)
-        self.entry5 = CTkEntry(self, placeholder_text="Год издания")
+        self.entry5 = CTkEntry(self.new_window1, placeholder_text="Год издания")
         self.entry5.place(x=200, y=160)
 
-        self.button1 = CTkButton(self, text="Найти", command=self.find_book)
+        self.button1 = CTkButton(self.new_window1, text="Найти", command=self.find_book)
         self.button1.place(x=10, y=200)
 
-        self.button2 = CTkButton(self, text="Выдать", command=self.out_book)
+        self.button2 = CTkButton(self.new_window1, text="Выдать", command=self.out_book)
         self.button2.place(x=230, y=200)
 
-        self.button3 = CTkButton(self, text="Получить", command=self.in_book)
+        self.button3 = CTkButton(self.new_window1, text="Получить", command=self.in_book)
         self.button3.place(x=450, y=200)
 
-        self.label = CTkLabel(self, text="Информация:", corner_radius=5)
+        self.label = CTkLabel(self.new_window1, text="Информация:", corner_radius=5)
         self.label.place(x=5, y=230)
-        self.textbox1 = CTkTextbox(master=self, width=800, height=100, corner_radius=0)
+        self.textbox1 = CTkTextbox(master=self.new_window1, width=800, height=100, corner_radius=0)
         self.textbox1.place(x=5, y=250)
         self.textbox1.delete(1.0, 'end')
 
+        self.new_window1.mainloop()
+
     def out_book(self):
-        dialog = CTkInputDialog(text="Введите название книги:", title="Выдача книги")
-        name = dialog.get_input()
+
+        self.dialog = CTkInputDialog(text="Введите название книги:", title="Выдача книги")
+        name = self.dialog.get_input()
         try:
             cursor.execute("SELECT * FROM book WHERE name=?", (name,))
             result = cursor.fetchone()

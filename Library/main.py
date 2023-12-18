@@ -39,7 +39,6 @@ class App(customtkinter.CTk):
 
         if login == logtrue and password == passtrue:
             Lib(login)
-            self.after(1000, self.destroy)
         else:
             text = "Неверный логин или пароль"
             self.title3.configure(text=text)
