@@ -133,5 +133,6 @@ class FindBook:
             self.text += "Ничего не найдено"
         else:
             for item in self.results:
-                self.text += f"Название: {item[1]}, Автор: {item[2]}, Жанр: {item[3]}, Страниц: {item[4]}, Год: {item[5]}, Количество: {item[6]} \n"
+                self.text += (f"Название: {item[1]}, Автор: {item[2]}, Жанр: {item[3]},"
+                              f" Страниц: {item[4]}, Год: {item[5]}, Количество: {item[6]} \n")
         self.textbox1.insert("0.0", text=self.text)

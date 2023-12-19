@@ -47,5 +47,6 @@ class Lib:
         books = cursor.fetchall()
         self.textbox2.delete(1.0, 'end')
         for item in books:
-            text = f"Название: {item[1]}, Автор: {item[2]}, Жанр: {item[3]}, Страниц: {item[4]}, Год: {item[5]}, Количество: {item[6]} \n"
+            text = (f"Название: {item[1]}, Автор: {item[2]}, Жанр: {item[3]},"
+                    f" Страниц: {item[4]}, Год: {item[5]}, Количество: {item[6]} \n")
             self.textbox2.insert("0.0", text=text)

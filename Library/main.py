@@ -10,7 +10,7 @@ class App(customtkinter.CTk):
         self.geometry("400x220")
 
         self.title1 = customtkinter.CTkLabel(
-            self, text="Добро пожаловать в нашу бибилиотеку", corner_radius=5)
+            self, text="Добро пожаловать в нашу библиотеку", corner_radius=5)
         self.title1.place(x=70, y=10)
         self.title4 = customtkinter.CTkLabel(
             self, text="Для дальнейших действий авторизуйтесь", corner_radius=5)

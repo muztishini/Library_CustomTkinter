@@ -65,7 +65,8 @@ class AddBook:
         if not pages.isdigit() or not year.isdigit() or not quantity.isdigit():
             self.textbox.delete(1.0, 'end')
             self.textbox.insert("0.0",
-                                text="Пожалуйста, введите целые числа для полей количества страниц, года издания и количества книг")
+                                text="Пожалуйста, введите целые числа для полей количества страниц, года издания и "
+                                     "количества книг")
             return
 
         book = (name, author, genre, pages, year, quantity)
